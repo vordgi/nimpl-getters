@@ -2,7 +2,7 @@ import { staticGenerationAsyncStorage } from 'next/dist/client/components/static
 import { normalizeInterceptingRoutes, normalizePagePath, normalizePathname, parseSegments } from './utils';
 import { serverGetterInClientComponentError } from './server-getter-in-client-component-error';
 
-const getParams = () => {
+export const getParams = () => {
     serverGetterInClientComponentError('getParams');
 
     const store = staticGenerationAsyncStorage.getStore();
@@ -31,5 +31,3 @@ const getParams = () => {
     const query = parseSegments(pagePathInterceptedParts, pathnameParts);
     return query;
 }
-
-export default getParams;
