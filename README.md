@@ -28,6 +28,18 @@ Why getters instead of extending existing hooks?
 
 I'm not very fond of the idea of extending hooks - on the server, it won't be a hook no matter how you look at it. These are specifically getters. Moreover, a client-side hook can be synchronous, while a server-side getter for the same task can be asynchronous, making it a more versatile format.
 
+## Installation
+
+**Using npm:**
+```bash
+npm i next-impl-getters
+```
+
+**Using yarn:**
+```bash
+yarn add next-impl-getters
+```
+
 ## Current Getters
 
 ### get-pathname [stable]
