@@ -1,0 +1,45 @@
+{
+  "name": "next-impl-getters",
+  "version": "0.1.0",
+  "description": "Repo for an example implementation of getters to retrieve page data in server-side components",
+  "files": [
+    "**/*.js",
+    "**/*.d.ts"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "next",
+    "next.js",
+    "server components",
+    "react.js",
+    "get-pathname",
+    "getters",
+    "implementation",
+    "get-params"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vordgi/next-impl-getters.git"
+  },
+  "author": {
+    "name": "Savelyev Alexander",
+    "email": "vordgi1@gmail.com",
+    "url": "https://github.com/vordgi/"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "20.0.0",
+    "@types/react": "18.2.43",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "next": "14.0.4",
+    "typescript": "5.3.2"
+  },
+  "peerDependencies": {
+    "react": ">= 18.2.0",
+    "react-dom": ">= 18.2.0",
+    "next": ">= 14.0.0"
+  }
+}
