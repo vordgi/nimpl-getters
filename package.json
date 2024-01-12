@@ -1,7 +1,7 @@
 {
   "name": "next-impl-getters",
-  "version": "0.1.0",
-  "description": "Repo for an example implementation of getters to retrieve page data in server-side components",
+  "version": "0.2.0",
+  "description": "Repo for an example implementation of getters to retrieve page data in react server components",
   "files": [
     "**/*.js",
     "**/*.d.ts"
@@ -17,7 +17,8 @@
     "get-pathname",
     "getters",
     "implementation",
-    "get-params"
+    "get-params",
+    "rsc"
   ],
   "repository": {
     "type": "git",
