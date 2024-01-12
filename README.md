@@ -1,6 +1,6 @@
 # Next Impl Getters
 
-Repo for an example implementation of getters to retrieve page data in server-side components.
+Repo for an example implementation of getters to retrieve page data in react server components.
 
 ## Why is this repository needed?
 
@@ -56,6 +56,39 @@ export default function Component() {
         // ...
     )
 }
+```
+
+### get-search-params [beta]
+
+Retrieves search-params for the current page request
+
+```tsx
+import { getSearchParams } from 'next-impl-getters/get-search-params'
+
+export default function Component() {
+    const searchParams = getSearchParams()
+
+    const source = searchParams.get('source')
+
+    return (
+        // ...
+    )
+}
+```
+
+Because the getter works on every request, the dynamic page parameter must be set to dynamic (*not static*) for it to work.
+
+If the page has the `dynamic='force-static'` or `dynamic='error'` option specified, the getter will throw an error. If this option is not specified, it will output a warning. It is recommended to specify force-dynamic:
+
+```tsx
+// app/**/page.tsx
+export const dynamic = 'force-dynamic'
+```
+
+If you are sure you want to ignore the logic with checking the dynamic option - pass `{ ignoreDynamicOptionErrors: true }` as the first argument in the getter.
+
+```tsx
+const searchParams = getSearchParams({ ignoreDynamicOptionErrors: true })
 ```
 
 ### get-params [experimental]
