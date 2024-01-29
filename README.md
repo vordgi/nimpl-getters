@@ -1,32 +1,8 @@
 # Next Impl Getters
 
-Repo for an example implementation of getters to retrieve page data in react server components.
+Implementation of server getters for working with data in react server components.
 
-## Why is this repository needed?
-
-Next.js has been reluctant for a long time (over two years [[task](https://github.com/vercel/next.js/issues/43704)]) to work on this issue, suggesting the use of client-side components. The community mainly uses headers and middleware, thereby disabling static optimization. Personally, in the projects I work on, I pass parameters through props (yes, on multiple levels) or use client-side components.
-
-All existing solutions leave much to be desired.
-
-## Possible Issues
-
-As a potential risk of a server-side solution, the problem of Layouts is mentioned, that they do not rebuild, which is inherent in the app router foundation. I don't see any reason to change this logic.
-
-The most reliable approach, in my opinion, is to output messages to the console or even throw an error when this function is used in Layout or Error without the necessary conditions.
-
-So far, I haven't found a way to track in server-side components from which parent the component is being built.
-
-If it is not possible to do this, I would simply allow the implementation of this functionality with an additional note in the documentation that Layout does not rebuild, so using this function in it is not recommended.
-
-The problem with Layouts will also arise with the emergence of server-side contexts, so a solution to prohibit certain methods in it or simply recommend not using them is inevitable.
-
-## What's next?
-
-The repository has been created while waiting for possible revisions and [PR](https://github.com/vercel/next.js/pull/59909) merging - for testing and collecting suggestions.
-
-Why getters instead of extending existing hooks?
-
-I'm not very fond of the idea of extending hooks - on the server, it won't be a hook no matter how you look at it. These are specifically getters. Moreover, a client-side hook can be synchronous, while a server-side getter for the same task can be asynchronous, making it a more versatile format.
+Before using the library, read the [notes](https://github.com/vordgi/next-impl-getters#why-is-this-repository-needed)
 
 ## Installation
 
@@ -54,6 +30,70 @@ export default function Component() {
 
     return (
         // ...
+    )
+}
+```
+
+### Server contexts [beta]
+
+Familiar React contexts, but working fully on the server
+
+1\. **Initialize the context**
+```tsx
+// ./ExampleContext.ts
+import createServerContext from "next-impl-getters/create-server-context"
+
+export const ExampleContext = createServerContext<{ data: string }>()
+```
+
+2\. **Transfer the data to the provider**
+```tsx
+// ./ParentComponent.ts
+import { ExampleContext } from "./ExampleContext"
+import ChildComponent from "./ChildComponent"
+
+export default function ParentComponent() {
+    return (
+        <ExampleContext.Provider value={{ data: 'test' }}>
+            <ChildComponent />
+        </ExampleContext.Provider>
+    )
+}
+```
+
+3\. **Get context data**
+```tsx
+// ./ChildComponent.ts
+import getServerContext from "next-impl-getters/get-server-context"
+import { ExampleContext } from "./ExampleContext"
+
+export default function ChildComponent() {
+    const context = getServerContext(ExampleContext)
+
+    return (
+        <div>
+            {context?.data}
+        </div>
+    )
+}
+```
+
+3\.1. **You can also use a consumer to get context data**
+```tsx
+// ./ParentComponent.ts
+import { ExampleContext } from "./ExampleContext"
+import ChildComponent from "./ChildComponent"
+
+export default function ParentComponent() {
+    return (
+        <ExampleContext.Provider value={{ data: 'test' }}>
+            <ExampleContext.Consumer>
+                {(data) => {
+                    //...
+                    return <ChildComponent />
+                }}
+            </ExampleContext.Consumer>
+        </ExampleContext.Provider>
     )
 }
 ```
@@ -110,6 +150,32 @@ export default function Component() {
     )
 }
 ```
+
+## Why is this repository needed?
+
+Next.js has been reluctant for a long time (over two years [[task](https://github.com/vercel/next.js/issues/43704)]) to work on this issue, suggesting the use of client-side components. The community mainly uses headers and middleware, thereby disabling static optimization. Personally, in the projects I work on, I pass parameters through props (yes, on multiple levels) or use client-side components.
+
+All existing solutions leave much to be desired.
+
+## Possible Issues
+
+As a potential risk of a server-side solution, the problem of Layouts is mentioned, that they do not rebuild, which is inherent in the app router foundation. I don't see any reason to change this logic.
+
+The most reliable approach, in my opinion, is to output messages to the console or even throw an error when this function is used in Layout or Error without the necessary conditions.
+
+So far, I haven't found a way to track in server-side components from which parent the component is being built.
+
+If it is not possible to do this, I would simply allow the implementation of this functionality with an additional note in the documentation that Layout does not rebuild, so using this function in it is not recommended.
+
+The problem with Layouts will also arise with the emergence of server-side contexts, so a solution to prohibit certain methods in it or simply recommend not using them is inevitable.
+
+## What's next?
+
+The repository has been created while waiting for possible revisions and [PR](https://github.com/vercel/next.js/pull/59909) merging - for testing and collecting suggestions.
+
+Why getters instead of extending existing hooks?
+
+I'm not very fond of the idea of extending hooks - on the server, it won't be a hook no matter how you look at it. These are specifically getters. Moreover, a client-side hook can be synchronous, while a server-side getter for the same task can be asynchronous, making it a more versatile format.
 
 ## Additional
 
