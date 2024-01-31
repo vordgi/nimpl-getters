@@ -1,6 +1,6 @@
 {
   "name": "next-impl-getters",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Repo for an example implementation of getters to retrieve page data in react server components",
   "files": [
     "**/*.js",
