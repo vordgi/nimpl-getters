@@ -2,7 +2,7 @@
 
 Implementation of server getters for working with data in react server components.
 
-Before using the library, read the [notes](https://github.com/vordgi/next-impl-getters#why-is-this-repository-needed)
+Before using the library, read the [notes](#why-is-this-repository-needed)
 
 ## Installation
 
@@ -20,6 +20,8 @@ yarn add next-impl-getters
 
 ### get-pathname [stable]
 
+*Uses next.js functionality*
+
 The getter almost fully utilizes Next.js functionality and is awaiting [PR](https://github.com/vercel/next.js/pull/59909) merging.
 
 ```tsx
@@ -35,6 +37,8 @@ export default function Component() {
 ```
 
 ### Server contexts [beta]
+
+*Uses only node.js and react.js functionality*
 
 Familiar React contexts, but working fully on the server
 
@@ -100,6 +104,8 @@ export default function ParentComponent() {
 
 ### get-search-params [beta]
 
+*Uses next.js functionality*
+
 Retrieves search-params for the current page request
 
 ```tsx
@@ -131,7 +137,34 @@ If you are sure you want to ignore the logic with checking the dynamic option - 
 const searchParams = getSearchParams({ ignoreDynamicOptionErrors: true })
 ```
 
+### get-page-config [beta]
+
+*Uses next.js functionality*
+
+Retrieves page config for the currently rendered page
+
+```tsx
+import { getPageConfig } from 'next-impl-getters/get-page-config'
+// ...
+
+export default function Component() {
+    const { basePath, dynamic, pagePath, revalidate } = getPageConfig()
+
+    // getters are not hooks, so you can use them inside conditions
+    if (dynamic === 'force-dynamic') {
+        const searchParams = getSearchParams()
+        // ...
+    }
+
+    return (
+        // ...
+    )
+}
+```
+
 ### get-params [experimental]
+
+*Uses next.js functionality*
 
 Retrieves parameters for the current page.
 
@@ -182,3 +215,11 @@ I'm not very fond of the idea of extending hooks - on the server, it won't be a 
 Please consider giving a star if you like it, it will help promote the implementation in the eyes of the next.js team.
 
 Create tasks for identified issues, desired getters, or various improvements.
+
+## See also
+
+[next-impl-config](https://github.com/vordgi/next-impl-config) — next.js essentially works in 4 environments — build, server, client and edge, with configuration described only for two of them — build and server. This package gives the opportunity to add settings for each possible environment.
+
+[next-classnames-minifier](https://github.com/vordgi/next-classnames-minifier) — due to the peculiarities of caching next.js it is difficult to configure class compression to symbols (.a, .b, …, .a1) and to solve this task this package was made, which was dedicated to the recent article.
+
+[next-translation](https://github.com/vordgi/next-translation) — package designed primarily with server components in mind and maximum optimization (due to the transfer of logic to the assembly stage and/or server side).
