@@ -25,6 +25,14 @@ jobs:
           cp ../LICENSE .
         working-directory: ./package
 
+      - name: Test package
+        run: |
+          npm install
+          npm install next@canary
+          npm run build
+          npm run test
+        working-directory: ./tests/nextjs-app
+
       - name: Publish on main
         if: "!contains(github.ref_name, 'canary')"
         run: |
