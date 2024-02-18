@@ -19,8 +19,9 @@ export const getParams = () => {
 
     const isRootPage = cleanUrlPathname === '' && cleanPagePath === '';
     const isNotFoundPage = pagePath.match(/\/_not-found\/?$/);
-    const isValidCatchALl = cleanPagePath.match(/\[\.\.\.[^\]]+\]/) && pathnameParts.length >= pagePathInterceptedParts.length;
-    const isCorrectMatched = isRootPage || isNotFoundPage || pagePathInterceptedParts.length === pathnameParts.length || isValidCatchALl;
+    const isValidCatchALl = cleanPagePath.match(/\/\[\.\.\.[^\]]+\]/) && pathnameParts.length >= pagePathInterceptedParts.length;
+    const isValidOptionalCatchALl = cleanPagePath.match(/\/\[\[\.\.\.[^\]]+\]\]/) && pathnameParts.length >= pagePathInterceptedParts.length - 1;
+    const isCorrectMatched = isRootPage || isNotFoundPage || pagePathInterceptedParts.length === pathnameParts.length || isValidCatchALl || isValidOptionalCatchALl;
 
     if (!isCorrectMatched) {
         const createIssueUrl = new URL('https://github.com/vordgi/next-impl-getters/issues/new')
