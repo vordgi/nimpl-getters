@@ -5,16 +5,37 @@ on:
     types: [created]
 
 jobs:
-  publish-npm:
+  publish:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 18.17.1
-          registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm run build
-      - run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          node-version: '20'
+
+      - name: Install dependencies and build
+        run: |
+          npm ci
+          npm run build
+          cp ../README.md .
+          cp ../LICENSE .
+        working-directory: ./package
+
+      - name: Publish on main
+        if: "!contains(github.ref_name, 'canary')"
+        run: |
+          npm set //registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}
+          npm publish --access public
+        working-directory: ./package
+
+      - name: Publish on canary
+        if: contains(github.ref_name, 'canary')
+        run: |
+          npm set //registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}
+          npm version --no-git-tag-version ${{github.ref_name}}
+          npm publish --tag canary --access public
+        working-directory: ./package
