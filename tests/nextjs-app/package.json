@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test:e2e": "playwright test",
+    "test": "yarn build && concurrently \"yarn start\" \"playwright test\" -k"
+  },
+  "dependencies": {
+    "concurrently": "8.2.2",
+    "next": "latest",
+    "next-impl-getters": "link:../../package",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "@types/node": "20.10.4",
+    "@types/react": "18.2.45",
+    "typescript": "5.3.3"
+  }
+}
