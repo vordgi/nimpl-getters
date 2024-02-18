@@ -27,10 +27,10 @@ jobs:
 
       - name: Test package
         run: |
-          npm install
-          npm install next@canary
-          npm run build
-          npm run test
+          yarn
+          yarn add next@canary
+          yarn build
+          yarn test
         working-directory: ./tests/nextjs-app
 
       - name: Publish on main
