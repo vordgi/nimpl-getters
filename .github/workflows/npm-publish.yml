@@ -29,6 +29,7 @@ jobs:
         run: |
           yarn
           yarn add next@canary
+          yarn playwright install
           yarn build
           yarn test
         working-directory: ./tests/nextjs-app
