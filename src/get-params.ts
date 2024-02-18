@@ -20,7 +20,7 @@ export const getParams = () => {
     const isRootPage = cleanUrlPathname === '' && cleanPagePath === '';
     const isNotFoundPage = pagePath.match(/\/_not-found\/?$/);
 
-    if (!isRootPage && !isNotFoundPage && pagePathInterceptedParts.length !== pathnameParts.length) {
+    if (!isRootPage && !isNotFoundPage && pagePathInterceptedParts.length !== pathnameParts.length && !cleanPagePath.match(/\[\.\.\.[^\]]+\]/)) {
         const createIssueUrl = new URL('https://github.com/vordgi/next-impl-getters/issues/new')
         createIssueUrl.searchParams.set('title', 'Error parsing segments in get-params');
         createIssueUrl.searchParams.set('body', `urlPathname: \`${urlPathname}\`;\n\npagePath: \`${pagePath}\`;`);
