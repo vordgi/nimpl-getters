@@ -13,7 +13,7 @@ export default function Page() {
   const searchParams = getSearchParams({ ignoreDynamicOptionErrors: true });
 
   return (
-    <div id="dynamic-force-static-page">
+    <div id="dynamic-force-static-revalidate-page">
       <Nav />
       <div>
         <p id='get-pathname'>
@@ -28,7 +28,7 @@ export default function Page() {
         <p id='get-search-params'>
           {searchParams.toString()}
         </p>
-        <NamespaceServerContext.Provider value={{ namespace: 'dynamic-force-static' }}>
+        <NamespaceServerContext.Provider value={{ namespace: 'dynamic-force-static-revalidate' }}>
           <BlockWithContext />
         </NamespaceServerContext.Provider>
       </div>
@@ -37,3 +37,5 @@ export default function Page() {
 }
 
 export const dynamic = 'force-static';
+
+export const revalidate = 0;

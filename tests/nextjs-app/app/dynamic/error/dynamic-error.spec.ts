@@ -6,7 +6,7 @@ test("should not return search params on dynamic error page", async ({ page }) =
 
   const searchParams = await page.$('#get-search-params');
   const searchParamsRow = await searchParams?.textContent();
-  expect(searchParamsRow && JSON.parse(searchParamsRow)).toEqual("");
+  expect(searchParamsRow).toEqual("");
 });
 
 test("should return correct page config on dynamic error page", async ({ page }) => {

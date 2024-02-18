@@ -4,8 +4,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test:e2e": "playwright test",
-    "test": "yarn build && concurrently \"yarn start\" \"playwright test\" -k"
+    "test": "playwright test"
   },
   "dependencies": {
     "concurrently": "8.2.2",

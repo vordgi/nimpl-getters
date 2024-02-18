@@ -6,7 +6,7 @@ test("should not return search params on dynamic force-static page", async ({ pa
 
   const searchParams = await page.$('#get-search-params');
   const searchParamsRow = await searchParams?.textContent();
-  expect(searchParamsRow && JSON.parse(searchParamsRow)).toEqual("");
+  expect(searchParamsRow).toEqual("");
 });
 
 test("should return correct page config on dynamic force-static page", async ({ page }) => {
@@ -15,5 +15,5 @@ test("should return correct page config on dynamic force-static page", async ({ 
 
   const pageConfig = await page.$('#get-page-config');
   const pageConfigRow = await pageConfig?.textContent();
-  expect(pageConfigRow && JSON.parse(pageConfigRow)).toEqual({ basePath: "", dynamic: 'force-static', pagePath: `/dynamic/force-static/page`, revalidate: 60 });
+  expect(pageConfigRow && JSON.parse(pageConfigRow)).toEqual({ basePath: "", dynamic: 'force-static', pagePath: `/dynamic/force-static/page` });
 });
