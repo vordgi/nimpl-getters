@@ -1,0 +1,39 @@
+name: Test package
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies and build
+        run: |
+          npm ci
+          npm run build
+        working-directory: ./package
+
+      - name: Test package
+        run: |
+          yarn
+          yarn add next@canary
+          yarn playwright install
+          yarn build
+          yarn test
+        working-directory: ./tests/nextjs-app
+
+      - name: Set summary
+        run: |
+          NEXT_VERSION=$(node -p "require('next/package.json').version")
+          echo "$NEXT_VERSION" >> $GITHUB_STEP_SUMMARY
+        working-directory: ./tests/nextjs-app
