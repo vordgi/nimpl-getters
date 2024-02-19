@@ -19,8 +19,6 @@ jobs:
         run: |
           npm ci
           npm run build
-          cp ../README.md .
-          cp ../LICENSE .
         working-directory: ./package
 
       - name: Test package
@@ -36,3 +34,4 @@ jobs:
         run: |
           NEXT_VERSION=$(node -p "require('next/package.json').version")
           echo "$NEXT_VERSION" >> $GITHUB_STEP_SUMMARY
+        working-directory: ./tests/nextjs-app
