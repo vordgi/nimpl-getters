@@ -1,9 +1,11 @@
 name: Test package
 
-on: push
+on:
+  schedule:
+    - cron: '0 */6 * * *'
 
 jobs:
-  publish:
+  test:
     runs-on: ubuntu-latest
 
     steps:
