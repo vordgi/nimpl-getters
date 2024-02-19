@@ -1,5 +1,7 @@
 name: Test package
 
+on: push
+
 jobs:
   publish:
     runs-on: ubuntu-latest
