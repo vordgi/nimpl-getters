@@ -25,7 +25,7 @@ jobs:
           cp ../LICENSE .
         working-directory: ./package
 
-      - name: Test package
+      - name: Test package general
         run: |
           yarn
           yarn add next@canary
@@ -33,6 +33,15 @@ jobs:
           yarn build
           yarn test
         working-directory: ./tests/nextjs-app
+
+      - name: Test package contexts
+        run: |
+          yarn
+          yarn add next@canary
+          yarn playwright install
+          yarn build
+          yarn test
+        working-directory: ./tests/server-contexts
 
       - name: Publish on main
         if: "!contains(github.ref_name, 'canary')"

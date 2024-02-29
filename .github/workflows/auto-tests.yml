@@ -23,7 +23,7 @@ jobs:
           npm run build
         working-directory: ./package
 
-      - name: Test package
+      - name: Test package general
         run: |
           yarn
           yarn add next@canary
@@ -32,8 +32,16 @@ jobs:
           yarn test
         working-directory: ./tests/nextjs-app
 
+      - name: Test package contexts
+        run: |
+          yarn
+          yarn add next@canary
+          yarn playwright install
+          yarn build
+          yarn test
+        working-directory: ./tests/server-contexts
+
       - name: Set summary
         run: |
           NEXT_VERSION=$(node -p "require('next/package.json').version")
           echo "$NEXT_VERSION" >> $GITHUB_STEP_SUMMARY
-        working-directory: ./tests/nextjs-app
