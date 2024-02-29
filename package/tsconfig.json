@@ -10,7 +10,8 @@
     "outDir": ".",
     "rootDir": "src",
     "declaration": true,
-    "declarationDir": "."
+    "declarationDir": ".",
+    "jsx": "react"
   },
   "include": [
     "env.d.ts",
