@@ -1,8 +1,8 @@
 # Next Impl Getters
 
-Implementation of server getters for working with data in react server components.
+Implementation of server getters for working with data in React Server Components without switching to SSR.
 
-Before using the library, read the [notes](#why-is-this-repository-needed)
+Before using the library, read the [Possible Issues](#possible-issues)
 
 ## Installation
 
@@ -184,11 +184,15 @@ export default function Component() {
 }
 ```
 
-## Why is this repository needed?
+## Stability
 
-Next.js has been reluctant for a long time (over two years [[task](https://github.com/vercel/next.js/issues/43704)]) to work on this issue, suggesting the use of client-side components. The community mainly uses headers and middleware, thereby disabling static optimization. Personally, in the projects I work on, I pass parameters through props (yes, on multiple levels) or use client-side components.
+All getters are covered with tests. Tests are run on every release and every 6 hours on the latest **Canary** version of `Next.js`.
 
-All existing solutions leave much to be desired.
+In this way, you can be sure not only of the stability of the code, but also that if there is a breaking change in `Next.js`, this will immediately become known. *Even before the release of a stable version of `Next.js`.*
+
+## Examples
+
+You can see examples in the [directory](https://github.com/vordgi/next-impl-getters/tree/main/examples) of the repository.
 
 ## Possible Issues
 
