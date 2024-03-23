@@ -3,8 +3,10 @@ import { serverGetterInClientComponentError } from './server-getter-in-client-co
 import { ReadonlyURLSearchParams } from 'next/navigation'
 import { stripInternalSearchParams } from 'next/dist/server/internal-utils'
 
+/** @deprecated getSearchParams is deprecated. [Read more](https://github.com/vordgi/next-impl-getters/tree/main/docs/get-search-params.md) */
 export function getSearchParams(opts?: { ignoreDynamicOptionErrors?: boolean }) {
   serverGetterInClientComponentError('getSearchParams')
+  console.error('getSearchParams is deprecated. Read more - https://github.com/vordgi/next-impl-getters/tree/main/docs/get-search-params.md')
 
   const store = staticGenerationAsyncStorage.getStore()
 
@@ -14,7 +16,7 @@ export function getSearchParams(opts?: { ignoreDynamicOptionErrors?: boolean }) 
 
   if (!opts?.ignoreDynamicOptionErrors) {
     if (forceStatic) {
-      throw new Error('Сannot get client search parameters with dynamic=error setting')
+      throw new Error('Сannot get client search parameters with dynamic=force-static setting')
     } else if (dynamicShouldError) {
       throw new Error('Сannot get client search parameters with dynamic=error setting')
     } else if (!forceDynamic) {
