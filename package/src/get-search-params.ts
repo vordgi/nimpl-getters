@@ -3,10 +3,10 @@ import { serverGetterInClientComponentError } from './server-getter-in-client-co
 import { ReadonlyURLSearchParams } from 'next/navigation'
 import { stripInternalSearchParams } from 'next/dist/server/internal-utils'
 
-/** @deprecated getSearchParams is deprecated. [Read more](https://github.com/vordgi/next-impl-getters/tree/main/docs/get-search-params.md) */
+/** @deprecated getSearchParams is deprecated. [Read more](https://nimpl.tech/getters/current-getters/get-search-params) */
 export function getSearchParams(opts?: { ignoreDynamicOptionErrors?: boolean }) {
   serverGetterInClientComponentError('getSearchParams')
-  console.error('getSearchParams is deprecated. Read more - https://github.com/vordgi/next-impl-getters/tree/main/docs/get-search-params.md')
+  console.error('getSearchParams is deprecated. Read more - https://nimpl.tech/getters/current-getters/get-search-params')
 
   const store = staticGenerationAsyncStorage.getStore()
 
