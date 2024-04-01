@@ -1,4 +1,4 @@
-import getServerContext from "next-impl-getters/get-server-context";
+import getServerContext from "@nimpl/getters/get-server-context";
 import Nav from "../../components/Nav";
 import { UninitializedContext } from "../../components/UninitializedContext";
 import SecondComponent from "./SecondComponent";

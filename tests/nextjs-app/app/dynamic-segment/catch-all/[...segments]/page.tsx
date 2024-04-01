@@ -1,5 +1,5 @@
-import { getPathname } from 'next-impl-getters/get-pathname';
-import { getParams } from 'next-impl-getters/get-params';
+import { getPathname } from '@nimpl/getters/get-pathname';
+import { getParams } from '@nimpl/getters/get-params';
 import Nav from "../../../../components/Nav";
 
 export default function Page() {
