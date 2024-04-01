@@ -1,6 +1,6 @@
 # @nimpl/getters
 
-Implementation of server getters for working with data in React Server Components without switching to SSR.
+Implementation of server getters and server contexts in React Server Components without switching to SSR
 
 Before using the library, read the [Possible Issues](https://nimpl.tech/getters/possible-issues)
 
