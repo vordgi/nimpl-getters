@@ -1,8 +1,12 @@
 # @nimpl/getters
 
+(Former [next-impl-getters](https://www.npmjs.com/package/next-impl-getters))
+
 Implementation of server getters and server contexts in React Server Components without switching to SSR
 
 Before using the library, read the [Possible Issues](https://nimpl.tech/getters/possible-issues)
+
+Visit https://nimpl.tech/getters to view the full documentation.
 
 ## Installation
 
