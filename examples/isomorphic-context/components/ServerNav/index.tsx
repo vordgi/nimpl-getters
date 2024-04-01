@@ -1,4 +1,4 @@
-import getServerContext from 'next-impl-getters/get-server-context';
+import getServerContext from '@nimpl/getters/get-server-context';
 import ServerContext from '../ServerContext';
 import Link from 'next/link';
 

@@ -6,8 +6,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@nimpl/getters": "latest",
     "next": "latest",
-    "next-impl-getters": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
