@@ -1,5 +1,5 @@
 {
-  "name": "next-impl-getters",
+  "name": "@nimpl/getters",
   "version": "1.2.0",
   "description": "Repo for an example implementation of getters to retrieve page data in react server components",
   "files": [
@@ -23,7 +23,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/vordgi/next-impl-getters.git"
+    "url": "git://github.com/vordgi/nimpl-getters.git"
   },
   "author": {
     "name": "Savelyev Alexander",

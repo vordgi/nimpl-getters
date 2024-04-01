@@ -7,8 +7,8 @@
     "test": "playwright test"
   },
   "dependencies": {
+    "@nimpl/getters": "link:../../package",
     "next": "latest",
-    "next-impl-getters": "link:../../package",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

@@ -24,7 +24,7 @@ export const getParams = () => {
     const isCorrectMatched = isRootPage || isNotFoundPage || pagePathInterceptedParts.length === pathnameParts.length || isValidCatchALl || isValidOptionalCatchALl;
 
     if (!isCorrectMatched) {
-        const createIssueUrl = new URL('https://github.com/vordgi/next-impl-getters/issues/new')
+        const createIssueUrl = new URL('https://github.com/vordgi/nimpl-getters/issues/new')
         createIssueUrl.searchParams.set('title', 'Error parsing segments in get-params');
         createIssueUrl.searchParams.set('body', `urlPathname: \`${urlPathname}\`;\n\npagePath: \`${pagePath}\`;`);
         createIssueUrl.searchParams.append('labels', 'bug');

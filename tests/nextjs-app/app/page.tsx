@@ -1,7 +1,7 @@
-import { getPathname } from 'next-impl-getters/get-pathname';
-import { getPageConfig } from 'next-impl-getters/get-page-config';
-import { getParams } from 'next-impl-getters/get-params';
-import { getSearchParams } from 'next-impl-getters/get-search-params';
+import { getPathname } from '@nimpl/getters/get-pathname';
+import { getPageConfig } from '@nimpl/getters/get-page-config';
+import { getParams } from '@nimpl/getters/get-params';
+import { getSearchParams } from '@nimpl/getters/get-search-params';
 import BlockWithContext from "../components/BlockWithContext";
 import Nav from "../components/Nav";
 

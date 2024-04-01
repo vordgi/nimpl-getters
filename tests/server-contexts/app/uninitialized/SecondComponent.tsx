@@ -1,4 +1,4 @@
-import getServerContext from "next-impl-getters/get-server-context";
+import getServerContext from "@nimpl/getters/get-server-context";
 import { UninitializedContext } from "../../components/UninitializedContext";
 
 const SecondComponent = async () => {

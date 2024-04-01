@@ -1,4 +1,4 @@
-import getServerContext from "next-impl-getters/get-server-context";
+import getServerContext from "@nimpl/getters/get-server-context";
 import { sleep } from "../../tools/sleep";
 import { AfterContext } from "../../components/AfterContext";
 
