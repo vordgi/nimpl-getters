@@ -1,7 +1,7 @@
 {
   "name": "@nimpl/getters",
-  "version": "1.2.0",
-  "description": "Repo for an example implementation of getters to retrieve page data in react server components",
+  "version": "1.3.0",
+  "description": "Implementation of server getters and server contexts in React Server Components without switching to SSR",
   "files": [
     "**/*.js",
     "**/*.d.ts"
