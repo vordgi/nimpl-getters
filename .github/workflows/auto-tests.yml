@@ -17,28 +17,31 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
       - name: Install dependencies and build
         run: |
-          npm ci
-          npm run build
+          pnpm install
+          pnpm run build
         working-directory: ./package
 
       - name: Test package general
         run: |
-          yarn
-          yarn add next@canary
-          yarn playwright install
-          yarn build
-          yarn test
+          pnpm install next@canary
+          pnpm playwright install
+          pnpm build
+          pnpm test
         working-directory: ./tests/nextjs-app
 
       - name: Test package contexts
         run: |
-          yarn
-          yarn add next@canary
-          yarn playwright install
-          yarn build
-          yarn test
+          pnpm install next@canary
+          pnpm playwright install
+          pnpm build
+          pnpm test
         working-directory: ./tests/server-contexts
 
       - name: Set summary
