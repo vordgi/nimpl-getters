@@ -1,0 +1,20 @@
+{
+  "name": "nimpl-getters",
+  "version": "1.0.0",
+  "description": "Implementation of server getters and server contexts in React Server Components without switching to SSR",
+  "scripts": {
+    "nimpl:getters": "pnpm --filter @nimpl/getters",
+    "tests:nextjs-app": "pnpm --filter tests/nextjs-app",
+    "tests:server-contexts": "pnpm --filter tests/server-contexts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vordgi/nimpl-getters.git"
+  },
+  "author": {
+    "name": "Savelyev Alexander",
+    "email": "vordgi1@gmail.com",
+    "url": "https://github.com/vordgi/"
+  },
+  "license": "MIC"
+}
