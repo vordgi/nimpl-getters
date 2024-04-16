@@ -1,17 +1,18 @@
-import type { ServerContext } from './types';
-import { AsyncLocalStorage } from 'async_hooks';
-import { serverGetterInClientComponentError } from './server-getter-in-client-component-error';
-import React from 'react';
+import type { ServerContext } from "./types";
+import { AsyncLocalStorage } from "async_hooks";
+import { serverGetterInClientComponentError } from "./server-getter-in-client-component-error";
+import React from "react";
 
-const Enter = ({ storage, value }: { storage: any, value: any }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Enter = ({ storage, value }: { storage: AsyncLocalStorage<{ value: unknown }>; value: unknown }) => {
     storage.enterWith({ value });
     return <></>;
-}
+};
 
 function createServerContext<T>(defaultValue?: T): ServerContext<T> {
-    serverGetterInClientComponentError('createServerContext');
+    serverGetterInClientComponentError("createServerContext");
 
-    const storage: ServerContext<T>['_storage'] = new AsyncLocalStorage<{ value: T }>();
+    const storage: ServerContext<T>["_storage"] = new AsyncLocalStorage<{ value: T }>();
 
     return {
         Provider: async ({ children, value }) => {
@@ -20,7 +21,7 @@ function createServerContext<T>(defaultValue?: T): ServerContext<T> {
                     <Enter storage={storage} value={value} />
                     {children}
                 </>
-            )
+            );
         },
         Consumer: ({ children }) => {
             const store = storage.getStore();
@@ -28,7 +29,7 @@ function createServerContext<T>(defaultValue?: T): ServerContext<T> {
         },
         _storage: storage,
         _defaultValue: defaultValue,
-    }
+    };
 }
 
 export default createServerContext;
