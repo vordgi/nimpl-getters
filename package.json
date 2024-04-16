@@ -5,7 +5,9 @@
   "scripts": {
     "nimpl:getters": "pnpm --filter @nimpl/getters",
     "tests:nextjs-app": "pnpm --filter tests/nextjs-app",
-    "tests:server-contexts": "pnpm --filter tests/server-contexts"
+    "tests:server-contexts": "pnpm --filter tests/server-contexts",
+    "lint": "eslint \"package/\"",
+    "eslint": "eslint"
   },
   "repository": {
     "type": "git",
@@ -15,6 +17,13 @@
     "name": "Savelyev Alexander",
     "email": "vordgi1@gmail.com",
     "url": "https://github.com/vordgi/"
+  },
+  "devDependencies": {
+    "eslint": "8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "prettier": "^3.2.5",
+    "typescript-eslint": "^7.6.0"
   },
   "license": "MIC"
 }
