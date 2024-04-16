@@ -1,7 +1,7 @@
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import tseslint from "typescript-eslint";
 
-const ignores = ["**/node_modules/**", "**/dist/**"];
+const ignores = ["**/node_modules/**", "**/dist/**", "**/*.js", "**/*.d.ts"];
 
 export default [
     {

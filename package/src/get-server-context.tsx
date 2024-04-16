@@ -1,8 +1,8 @@
-import type { ServerContext } from './types';
-import { serverGetterInClientComponentError } from './server-getter-in-client-component-error';
+import type { ServerContext } from "./types";
+import { serverGetterInClientComponentError } from "./server-getter-in-client-component-error";
 
 function getServerContext<T>({ _storage, _defaultValue }: ServerContext<T>) {
-    serverGetterInClientComponentError('getServerContext');
+    serverGetterInClientComponentError("getServerContext");
 
     const store = _storage.getStore();
 
