@@ -1,7 +1,5 @@
 import { getPathname } from "@nimpl/getters/get-pathname";
 import { getParams } from "@nimpl/getters/get-params";
-import { NamespaceServerContext } from "../../../../components/NamespaceServerContext";
-import BlockWithContext from "../../../../components/BlockWithContext";
 import Nav from "../../../../components/Nav";
 
 export default function Page() {
@@ -14,9 +12,6 @@ export default function Page() {
             <div>
                 <p id="get-pathname">{pathname}</p>
                 <p id="get-params">{JSON.stringify(params)}</p>
-                <NamespaceServerContext.Provider value={{ namespace: "dynamic-auto" }}>
-                    <BlockWithContext />
-                </NamespaceServerContext.Provider>
             </div>
         </div>
     );
