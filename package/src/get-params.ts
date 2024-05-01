@@ -13,21 +13,16 @@ export const getParams = () => {
 
     const cleanUrlPathname = normalizePathname(urlPathname);
     const cleanPagePath = normalizePagePath(pagePath);
-    const pagePathParts = cleanPagePath
-        .split("/")
-        .slice(1)
-        .filter((part) => !part.match(/^(\([^)]+\)|\@.+)$/));
+    const pagePathParts = cleanPagePath.split("/");
     const pagePathInterceptedParts = normalizeInterceptingRoutes(pagePathParts);
-    const pathnameParts = cleanUrlPathname.split("/").slice(1);
+    const pathnameParts = cleanUrlPathname.split("/");
 
-    const isRootPage = cleanUrlPathname === "" && cleanPagePath === "";
     const isNotFoundPage = pagePath.match(/\/_not-found\/?$/);
     const isValidCatchALl =
         cleanPagePath.match(/\/\[\.\.\.[^\]]+\]/) && pathnameParts.length >= pagePathInterceptedParts.length;
     const isValidOptionalCatchALl =
         cleanPagePath.match(/\/\[\[\.\.\.[^\]]+\]\]/) && pathnameParts.length >= pagePathInterceptedParts.length - 1;
     const isCorrectMatched =
-        isRootPage ||
         isNotFoundPage ||
         pagePathInterceptedParts.length === pathnameParts.length ||
         isValidCatchALl ||
