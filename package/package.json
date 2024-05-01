@@ -1,6 +1,6 @@
 {
   "name": "@nimpl/getters",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Implementation of server getters and server contexts in React Server Components without switching to SSR",
   "files": [
     "**/*.js",
