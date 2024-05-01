@@ -8,7 +8,8 @@ export const normalizePathname = (pathname: string) => {
 export const normalizePagePath = (pagePath: string) => {
     const cleanPagePath = pagePath && new URL(pagePath, "http://n").pathname;
     const pagePathWithoutFileType = cleanPagePath?.replace(/(\/page|\/_not-found)$/, "");
-    return pagePathWithoutFileType || "/";
+    const pagePathWithoutGroups = pagePathWithoutFileType.replace(/\/(\([^)]+\)|\@.+)/g, "");
+    return pagePathWithoutGroups || "/";
 };
 
 export const parseSegments = (pagePathParts: string[], pathnameParts: string[]) => {
