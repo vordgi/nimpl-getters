@@ -1,7 +1,7 @@
 {
   "name": "@nimpl/getters",
   "version": "1.3.4",
-  "description": "Implementation of server getters and server contexts in React Server Components without switching to SSR",
+  "description": "Implementation of server getters in React Server Components without switching to SSR in next.js",
   "files": [
     "**/*.js",
     "**/*.d.ts"
@@ -18,8 +18,7 @@
     "getters",
     "implementation",
     "get-params",
-    "rsc",
-    "server context"
+    "rsc"
   ],
   "repository": {
     "type": "git",
