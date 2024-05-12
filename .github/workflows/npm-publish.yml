@@ -36,15 +36,7 @@ jobs:
           pnpm playwright install
           pnpm build
           pnpm test
-        working-directory: ./tests/nextjs-app
-
-      - name: Test package contexts
-        run: |
-          pnpm add next@canary
-          pnpm playwright install
-          pnpm build
-          pnpm test
-        working-directory: ./tests/server-contexts
+        working-directory: ./tests/base
 
       - name: Publish on main
         if: "!contains(github.ref_name, 'canary')"
