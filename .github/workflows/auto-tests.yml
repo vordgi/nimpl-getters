@@ -34,18 +34,10 @@ jobs:
           pnpm playwright install
           pnpm build
           pnpm test
-        working-directory: ./tests/nextjs-app
-
-      - name: Test package contexts
-        run: |
-          pnpm install next@canary
-          pnpm playwright install
-          pnpm build
-          pnpm test
-        working-directory: ./tests/server-contexts
+        working-directory: ./tests/base
 
       - name: Set summary
         run: |
           NEXT_VERSION=$(node -p "require('next/package.json').version")
           echo "$NEXT_VERSION" >> $GITHUB_STEP_SUMMARY
-        working-directory: ./tests/nextjs-app
+        working-directory: ./tests/base
