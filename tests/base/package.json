@@ -9,9 +9,9 @@
   },
   "dependencies": {
     "@nimpl/getters": "link:../../package",
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "next": "canary",
+    "react": "canary",
+    "react-dom": "canary"
   },
   "devDependencies": {
     "@playwright/test": "^1.40.1",
