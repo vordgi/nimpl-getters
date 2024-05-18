@@ -30,7 +30,6 @@ jobs:
 
       - name: Test package general
         run: |
-          pnpm install next@canary
           pnpm playwright install
           pnpm build
           pnpm test
