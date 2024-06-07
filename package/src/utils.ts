@@ -2,17 +2,20 @@ export const normalizePathname = (pathname: string) => {
     const cleanPathname = pathname && new URL(pathname, "http://n").pathname;
     const pathnameWithoutTrailingSlash = cleanPathname?.replace(/^(\/.*)\/$/, "$1");
     const pathnameWithoutFileType = pathnameWithoutTrailingSlash?.replace(/\/_not-found$/, "");
-    return pathnameWithoutFileType || "/";
+    return pathnameWithoutFileType.endsWith("/") ? pathnameWithoutFileType : pathnameWithoutFileType + "/";
 };
 
 export const normalizePagePath = (pagePath: string) => {
     const cleanPagePath = pagePath && new URL(pagePath, "http://n").pathname;
-    const pagePathWithoutFileType = cleanPagePath?.replace(/(\/page|\/_not-found)$/, "");
+    const pagePathWithoutFileType = cleanPagePath?.replace(/(\/page|\/_not-found)$/, "/");
     const pagePathWithoutGroups = pagePathWithoutFileType
         .split("/")
+        .filter(Boolean)
         .filter((segment) => !segment.match(/^(\([^)]+\)$|^\@.+$)/g));
 
-    return pagePathWithoutGroups.join("/") || "/";
+    if (pagePathWithoutGroups.length === 0) return "/";
+
+    return "/" + pagePathWithoutGroups.join("/") + "/";
 };
 
 export const parseSegments = (pagePathParts: string[], pathnameParts: string[]) => {
@@ -72,4 +75,32 @@ export const normalizeInterceptingRoutes = (pageParts: string[]) => {
     }
 
     return normilizedParts.reverse();
+};
+
+export const INVALID_PARSE = Symbol("Invalid Parse");
+
+export const parseParams = (urlPathname: string, pagePath: string) => {
+    const cleanUrlPathname = normalizePathname(urlPathname);
+    const cleanPagePath = normalizePagePath(pagePath);
+    const pagePathParts = cleanPagePath.split("/").slice(0, -1);
+    const pagePathInterceptedParts = normalizeInterceptingRoutes(pagePathParts);
+    const pathnameParts = cleanUrlPathname.split("/").slice(0, -1);
+
+    const isNotFoundPage = pagePath.match(/\/_not-found\/?$/);
+    const isValidCatchALl =
+        cleanPagePath.match(/\/\[\.\.\.[^\]]+\]/) && pathnameParts.length >= pagePathInterceptedParts.length;
+    const isValidOptionalCatchALl =
+        cleanPagePath.match(/\/\[\[\.\.\.[^\]]+\]\]/) && pathnameParts.length >= pagePathInterceptedParts.length - 1;
+    const isCorrectMatched =
+        isNotFoundPage ||
+        pagePathInterceptedParts.length === pathnameParts.length ||
+        isValidCatchALl ||
+        isValidOptionalCatchALl;
+
+    if (!isCorrectMatched) {
+        return INVALID_PARSE;
+    }
+
+    const query = parseSegments(pagePathInterceptedParts, pathnameParts);
+    return query;
 };
