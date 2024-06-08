@@ -11,27 +11,31 @@ Visit https://nimpl.tech/getters to view the full documentation.
 ## Installation
 
 **Using npm:**
+
 ```bash
 npm i @nimpl/getters
 ```
 
 **Using yarn:**
+
 ```bash
 yarn add @nimpl/getters
 ```
 
 ## Current Getters
 
-* [get-pathname](https://nimpl.tech/getters/current-getters/get-pathname)
-* [get-page-config](https://nimpl.tech/getters/current-getters/get-page-config)
-* [get-params](https://nimpl.tech/getters/current-getters/get-params)
-* [get-search-params](https://nimpl.tech/getters/current-getters/get-search-params) (*deprecated*)
+- [get-pathname](https://nimpl.tech/getters/current-getters/get-pathname)
+- [get-page-config](https://nimpl.tech/getters/current-getters/get-page-config)
+- [get-params](https://nimpl.tech/getters/current-getters/get-params)
+- [get-search-params](https://nimpl.tech/getters/current-getters/get-search-params) (_deprecated_)
+
+> _`create-server-context` and `get-server-context` were moved to a separate package - [@nimpl/context](https://nimpl.tech/context)_
 
 ## Stability
 
 All getters are covered with tests. Tests are run on every release and every 6 hours on the latest **Canary** version of `Next.js`.
 
-In this way, you can be sure not only of the stability of the code, but also that if there is a breaking change in `Next.js`, this will immediately become known. *Even before the release of a stable version of `Next.js`.*
+In this way, you can be sure not only of the stability of the code, but also that if there is a breaking change in `Next.js`, this will immediately become known. _Even before the release of a stable version of `Next.js`._
 
 ## Additional
 
