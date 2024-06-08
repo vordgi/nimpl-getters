@@ -9,6 +9,9 @@ test.describe("Test utils", () => {
         expect(parseParams("/example/multiple/", "/[slug]/page")).toBe(INVALID_PARSE);
         expect(parseParams("/example/multiple/", "/[slug]/(group)/multiple/page")).toEqual({ slug: "example" });
         expect(parseParams("/example/multiple/", "/[...segments]/page")).toEqual({ segments: ["example", "multiple"] });
+        expect(parseParams("/example/multiple/", "/[[...segments]]/page")).toEqual({
+            segments: ["example", "multiple"],
+        });
         expect(parseParams("/", "/[[...segments]]/page")).toEqual({});
         expect(parseParams("/intercepted/", "/example/multiple/(..)(..)intercepted/page")).toEqual({});
     });
