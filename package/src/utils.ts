@@ -79,6 +79,17 @@ export const normalizeInterceptingRoutes = (pageParts: string[]) => {
 
 export const INVALID_PARSE = Symbol("Invalid Parse");
 
+const isSamePaths = (urlPathnameParts: string[], pagePathParts: string[]) => {
+    for (let i = 0; i < pagePathParts.length; i++) {
+        const urlPathnamePart = urlPathnameParts[i];
+        const pagePathPart = pagePathParts[i];
+        if (pagePathPart.match(/\[\.\.\.[^\]]+\]/)) return true;
+        if (pagePathPart.match(/\[[^\]]+\]/)) continue;
+        if (urlPathnamePart !== pagePathPart) return false;
+    }
+    return urlPathnameParts.length === pagePathParts.length;
+};
+
 export const parseParams = (urlPathname: string, pagePath: string) => {
     const cleanUrlPathname = normalizePathname(urlPathname);
     const cleanPagePath = normalizePagePath(pagePath);
@@ -87,15 +98,7 @@ export const parseParams = (urlPathname: string, pagePath: string) => {
     const pathnameParts = cleanUrlPathname.split("/").slice(0, -1);
 
     const isNotFoundPage = pagePath.match(/\/_not-found\/?$/);
-    const isValidCatchALl =
-        cleanPagePath.match(/\/\[\.\.\.[^\]]+\]/) && pathnameParts.length >= pagePathInterceptedParts.length;
-    const isValidOptionalCatchALl =
-        cleanPagePath.match(/\/\[\[\.\.\.[^\]]+\]\]/) && pathnameParts.length >= pagePathInterceptedParts.length - 1;
-    const isCorrectMatched =
-        isNotFoundPage ||
-        pagePathInterceptedParts.length === pathnameParts.length ||
-        isValidCatchALl ||
-        isValidOptionalCatchALl;
+    const isCorrectMatched = isNotFoundPage || isSamePaths(pathnameParts, pagePathInterceptedParts);
 
     if (!isCorrectMatched) {
         return INVALID_PARSE;

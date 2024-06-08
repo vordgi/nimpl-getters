@@ -15,7 +15,7 @@ type GetParamsOptions = {
     pagePaths?: string[];
 };
 
-export const getParams = (options: GetParamsOptions) => {
+export const getParams = (options: GetParamsOptions = {}) => {
     serverGetterInClientComponentError("getParams");
 
     const store = staticGenerationAsyncStorage.getStore();
