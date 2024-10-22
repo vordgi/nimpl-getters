@@ -2,11 +2,13 @@
 
 (Former [next-impl-getters](https://www.npmjs.com/package/next-impl-getters))
 
-Implementation of server getters in React Server Components without switching to SSR in next.js
+Implementation of server getters in React Server Components without switching to SSR in Next.js
 
 Before using the library, read the [Possible Issues](https://nimpl.tech/getters/possible-issues)
 
 Visit https://nimpl.tech/getters to view the full documentation.
+
+Use `@nimpl/getters 2.x` for Next.js v15. For earlier versions of Next.js use `@nimpl/getters 1.x`.
 
 ## Installation
 
@@ -39,6 +41,6 @@ In this way, you can be sure not only of the stability of the code, but also tha
 
 ## Additional
 
-Please consider giving a star if you like it, it will help promote the implementation in the eyes of the next.js team.
+Please consider giving a star if you like it, it will help promote the implementation in the eyes of the Next.js team.
 
 Create tasks for identified issues, desired getters, or various improvements.
