@@ -1,4 +1,5 @@
-import { staticGenerationAsyncStorage } from "next/dist/client/components/static-generation-async-storage.external";
+import { workAsyncStorage } from "next/dist/server/app-render/work-async-storage.external";
+import { workUnitAsyncStorage } from "next/dist/server/app-render/work-unit-async-storage.external";
 import { serverGetterInClientComponentError } from "./server-getter-in-client-component-error";
 import { INVALID_PARSE, parseParams } from "./utils";
 
@@ -18,12 +19,21 @@ type GetParamsOptions = {
 export const getParams = (options: GetParamsOptions = {}) => {
     serverGetterInClientComponentError("getParams");
 
-    const store = staticGenerationAsyncStorage.getStore();
+    const store = workAsyncStorage.getStore();
 
     if (!store) return {};
 
     const { ignoreDifferenceError, pagePaths, pathname } = options;
-    const { urlPathname, pagePath = "/" } = store;
+    const pageConfigurationStore = workAsyncStorage.getStore();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const pageStore = workUnitAsyncStorage.getStore() as any;
+
+    if (!pageConfigurationStore || !pageStore?.url?.pathname) return {};
+
+    const { route } = pageConfigurationStore;
+    const pagePath = route;
+    const urlPathname = pageStore.url.pathname;
+
     const targetUrlPathname = pathname || urlPathname;
 
     let isInvalid = false;
@@ -35,14 +45,14 @@ export const getParams = (options: GetParamsOptions = {}) => {
                     isInvalid ||= true;
                     continue;
                 }
-                return params;
+                return params || {};
             }
         } else {
             const params = parseParams(targetUrlPathname, pagePath);
             if (params === INVALID_PARSE) {
                 isInvalid ||= true;
             } else {
-                return params;
+                return params || {};
             }
         }
     } catch {
@@ -59,5 +69,5 @@ export const getParams = (options: GetParamsOptions = {}) => {
         throw new Error(`Something went wrong. Please create an issue on Github: ${createIssueUrl}`);
     }
 
-    return null;
+    return {};
 };

@@ -23,6 +23,6 @@ test.describe("get-params with custom pagePaths", async () => {
 
         const params = await page.$("#get-params");
         const paramsRow = await params?.textContent();
-        expect(paramsRow && JSON.parse(paramsRow)).toBeNull();
+        expect(paramsRow && JSON.parse(paramsRow)).toEqual({});
     });
 });

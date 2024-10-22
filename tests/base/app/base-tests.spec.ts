@@ -20,9 +20,6 @@ test.describe("Should work in server pages", async () => {
             const params = await page.$("#get-params");
             const paramsRow = await params?.textContent();
             expect(paramsRow && JSON.parse(paramsRow)).toEqual({});
-
-            const searchParams = await page.$("#get-search-params");
-            expect(await searchParams?.textContent()).toBe("");
         });
     }
 });

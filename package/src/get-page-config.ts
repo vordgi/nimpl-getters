@@ -1,15 +1,15 @@
-import { staticGenerationAsyncStorage } from "next/dist/client/components/static-generation-async-storage.external";
+import { workAsyncStorage } from "next/dist/server/app-render/work-async-storage.external";
 import { serverGetterInClientComponentError } from "./server-getter-in-client-component-error";
 
 export const getPageConfig = () => {
     serverGetterInClientComponentError("getPageConfig");
 
-    const store = staticGenerationAsyncStorage.getStore();
+    const store = workAsyncStorage.getStore();
 
     if (!store) return {};
 
     const basePath = process.env.__NEXT_ROUTER_BASEPATH || "";
-    const { pagePath, forceDynamic, forceStatic, dynamicShouldError, revalidate } = store || {};
+    const { page, forceDynamic, forceStatic, dynamicShouldError } = store || {};
     let dynamic = "auto";
     if (forceDynamic) {
         dynamic = "force-dynamic";
@@ -19,5 +19,5 @@ export const getPageConfig = () => {
         dynamic = "error";
     }
 
-    return { pagePath, dynamic, revalidate, basePath };
+    return { pagePath: page, dynamic, basePath };
 };
